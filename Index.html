@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucas Rodrigues | Curriculum Vitae</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
+        :root {
+            --bgDark: #0B1120;
+            --bgCard: #1E293B;
+            --bgCardHover: #334155;
+            --textMain: #F8FAFC;
+            --textMuted: #94A3B8;
+            --accentBlue: #38BDF8;
+            --accentGreen: #10B981;
+            --transitionSmooth: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bgDark);
+            color: var(--textMain);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .heroSection {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--bgCard);
+        }
+
+        @media (min-width: 768px) {
+            .heroSection {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        .heroContent {
+            flex: 1;
+        }
+
+        .heroTitle {
+            font-size: 3.2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, var(--textMain), var(--accentBlue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .heroSubtitle {
+            font-size: 1.3rem;
+            color: var(--accentBlue);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .heroDesc {
+            color: var(--textMuted);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            font-size: 1.05rem;
+        }
+
+        .heroButtons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transitionSmooth);
+            border: 1px solid transparent;
+        }
+
+        .btnPrimary {
+            background-color: var(--accentBlue);
+            color: var(--bgDark);
+        }
+
+        .btnPrimary:hover {
+            background-color: transparent;
+            border-color: var(--accentBlue);
+            color: var(--accentBlue);
+        }
+
+        .btnSecondary {
+            background-color: transparent;
+            border-color: var(--textMuted);
+            color: var(--textMain);
+        }
+
+        .btnSecondary:hover {
+            border-color: var(--textMain);
+            background-color: var(--bgCard);
+        }
+        
+        .contactInfo {
+            color: var(--textMuted);
+            font-size: 0.95rem;
+            margin-left: 0.5rem;
+        }
+
+        .heroVisual {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            position: relative;
+        }
+
+        .abstractShape {
+            width: 280px;
+            height: 280px;
+            background: linear-gradient(135deg, var(--bgCard), var(--accentBlue));
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            opacity: 0.15;
+            animation: morph 8s ease-in-out infinite;
+        }
+
+        @keyframes morph {
+            0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
+            100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+        }
+
+        .sectionTitle {
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+            display: inline-block;
+            position: relative;
+            font-weight: 800;
+        }
+
+        .sectionTitle::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 40%;
+            height: 4px;
+            background-color: var(--accentBlue);
+            border-radius: 2px;
+        }
+
+        section {
+            padding: 4.5rem 0;
+        }
+
+        .gridCards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--bgCard);
+            padding: 2.5rem;
+            border-radius: 16px;
+            transition: var(--transitionSmooth);
+            border-left: 4px solid transparent;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-left-color: var(--accentBlue);
+            background-color: var(--bgCardHover);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .card h3 { 
+            margin-bottom: 0.5rem; 
+            font-size: 1.25rem;
+        }
+        
+        .card .inst { 
+            color: var(--accentBlue); 
+            font-weight: 600; 
+            margin-bottom: 1.5rem; 
+        }
+        
+        .card .date { 
+            color: var(--textMuted); 
+            font-size: 0.95rem; 
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2.5rem;
+            border-left: 2px solid var(--bgCard);
+        }
+
+        .timelineItem {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .timelineItem::before {
+            content: '';
+            position: absolute;
+            left: -2.9rem;
+            top: 0.3rem;
+            width: 1rem;
+            height: 1rem;
+            background-color: var(--bgDark);
+            border: 3px solid var(--accentBlue);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+        }
+
+        .role { 
+            font-size: 1.4rem; 
+            font-weight: 600; 
+            color: var(--textMain); 
+        }
+        
+        .company { 
+            color: var(--accentBlue); 
+            font-weight: 600; 
+            margin: 0.5rem 0 1rem 0; 
+            font-size: 1.1rem;
+        }
+        
+        .impactList {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+        
+        .impactList li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--textMuted);
+            font-size: 1.05rem;
+        }
+
+        .impactList li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accentBlue);
+            font-size: 1.2rem;
+            top: -2px;
+        }
+
+        .featuredProject {
+            background: linear-gradient(145deg, var(--bgCard), #111827);
+            padding: 3.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featuredProject::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .projectHeader {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 1.5rem;
+        }
+
+        .projectTrophy {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--accentGreen);
+            padding: 0.75rem 1.25rem;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tabContainer {
+            background-color: var(--bgCard);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .tabHeaders {
+            display: flex;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            flex-wrap: wrap;
+            background-color: rgba(0,0,0,0.2);
+        }
+
+        .tabBtn {
+            flex: 1;
+            padding: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--textMuted);
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transitionSmooth);
+            min-width: 220px;
+        }
+
+        .tabBtn:hover {
+            color: var(--textMain);
+        }
+
+        .tabBtn.active {
+            color: var(--accentBlue);
+            border-bottom: 3px solid var(--accentBlue);
+            background-color: rgba(56, 189, 248, 0.05);
+        }
+
+        .tabContent {
+            display: none;
+            padding: 3rem;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .tabContent.active {
+            display: block;
+        }
+
+        .skillTags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .skillTag {
+            background-color: var(--bgDark);
+            padding: 0.85rem 1.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--textMain);
+            font-size: 0.95rem;
+            transition: var(--transitionSmooth);
+        }
+
+        .skillTag:hover {
+            border-color: var(--accentBlue);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(56, 189, 248, 0.15);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .langGrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .langItem {
+            background-color: var(--bgCard);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: var(--transitionSmooth);
+        }
+
+        .langItem:hover {
+            border-color: var(--accentBlue);
+        }
+
+        .langHeader {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.25rem;
+            font-size: 1.1rem;
+        }
+
+        .barBg {
+            width: 100%;
+            height: 10px;
+            background-color: var(--bgDark);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .barFill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accentBlue), #818cf8);
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .fillNativo { width: 100%; }
+        .fillAdv { width: 80%; }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <header class="heroSection">
+            <div class="heroContent">
+                <h1 class="heroTitle">Lucas de Souza Rodrigues</h1>
+                <h2 class="heroSubtitle">Electrical Engineering & Industrial Production Management Student</h2>
+                <p class="heroDesc">
+                    Practical experience in an industrial environment with a strong focus on data analysis, key performance indicators (KPIs), and continuous process improvement.
+                </p>
+                <div class="heroButtons">
+                    <a href="mailto:lucasrodrigues07.contato@gmail.com" class="btn btnPrimary">Send Email</a>
+                    <a href="https://www.linkedin.com/in/lucas-rodrigues-077b121b7" target="_blank" class="btn btnSecondary">LinkedIn</a>
+                    <span class="contactInfo">Curitiba, Paraná, Brazil</span>
+                </div>
+            </div>
+            <div class="heroVisual">
+                <div class="abstractShape"></div>
+            </div>
+        </header>
+
+        <section class="sobre">
+            <h2 class="sectionTitle">About Me</h2>
+            <p style="color: var(--textMuted); max-width: 850px; font-size: 1.15rem; line-height: 1.8;">
+                I am an Electrical Engineering student with complementary studies in Industrial Production Management. I have practical experience in the industrial sector, focusing on operational data analysis, monitoring key performance indicators (KPIs), and implementing continuous improvement. I am looking for professional opportunities in data-driven environments, applying analytical skills to complex problem-solving and strategic optimization.
+            </p>
+        </section>
+
+        <section class="formacao">
+            <h2 class="sectionTitle">Academic Background</h2>
+            <div class="gridCards">
+                <div class="card">
+                    <h3>Bachelor's Degree in Electrical Engineering</h3>
+                    <div class="inst">Federal University of Paraná (UFPR)</div>
+                    <p class="date">Emphasis: Embedded Electronic Systems</p>
+                    <p class="date">Start: 2025 | Expected Graduation: 2030</p>
+                </div>
+                <div class="card">
+                    <h3>Technologist Degree in Industrial Production Management</h3>
+                    <div class="inst">Uniasselvi (Distance Learning)</div>
+                    <p class="date">Start: 2026 | Expected Graduation: 2028</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="experiencia">
+            <h2 class="sectionTitle">Professional Experience</h2>
+            <div class="timeline">
+                <div class="timelineItem">
+                    <h3 class="role">Industrial Engineering Apprentice</h3>
+                    <div class="company">Motherson Group | Curitiba, Brazil</div>
+                    <p style="color: var(--textMuted); margin-bottom: 1.5rem; font-size: 0.95rem;">2025 to Present</p>
+                    <ul class="impactList">
+                        <li>Multidisciplinary support in launching new projects for global automakers, assisting the industrial engineering team in interfacing with cross functional departments.</li>
+                        <li>Participation in alignment meetings with international teams, facilitating information flow and tracking project schedules.</li>
+                        <li>Development of Standard Operating Procedures (SOPs) and technical documentation to guide operations and support the standardization of production processes.</li>
+                        <li>Requirements tracking and organization of operational data to support decision making across different areas.</li>
+                        <li>Analysis of performance indicators (KPIs) to monitor production processes and identify deviations.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="projetos">
+            <h2 class="sectionTitle">Featured Project</h2>
+            <div class="featuredProject">
+                <div class="projectHeader">
+                    <div>
+                        <h3 style="font-size: 2rem; margin-bottom: 0.5rem; color: var(--textMain);">P&A | Progress and Advancement</h3>
+                        <p style="color: var(--accentBlue); font-size: 1.2rem; font-weight: 600;">Logistics Process Improvement at Motherson Group</p>
+                    </div>
+                    <div class="projectTrophy">
+                        🏆 1st Place, Journey Program
+                    </div>
+                </div>
+                <ul class="impactList" style="margin-top: 2rem;">
+                    <li>Improvement project in the logistics shipping area.</li>
+                    <li>Digitalization of the dispatch checklist and standardization of the verification flow.</li>
+                    <li>Creation and monitoring of performance indicators (KPIs) to analyze process efficiency.</li>
+                    <li>Presentation of the proposal and alignment with stakeholders for implementation feasibility.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="habilidades">
+            <h2 class="sectionTitle">Technical Skills</h2>
+            <div class="tabContainer">
+                <div class="tabHeaders">
+                    <button class="tabBtn active" data-target="dados">Data Analysis</button>
+                    <button class="tabBtn" data-target="processos">Processes & Improvement</button>
+                    <button class="tabBtn" data-target="sistemas">Systems & Tools</button>
+                </div>
+                
+                <div class="tabContent active" id="dados">
+                    <div class="skillTags">
+                        <span class="skillTag">Performance monitoring</span>
+                        <span class="skillTag">Key Performance Indicators (KPIs)</span>
+                        <span class="skillTag">Data and results presentation</span>
+                    </div>
+                </div>
+
+                <div class="tabContent" id="processos">
+                    <div class="skillTags">
+                        <span class="skillTag">Lean Six Sigma Yellow Belt Certification</span>
+                        <span class="skillTag">Continuous process improvement</span>
+                        <span class="skillTag">Standardization and process control</span>
+                        <span class="skillTag">5S Methodology</span>
+                        <span class="skillTag">Quality tools (practical use)</span>
+                    </div>
+                </div>
+
+                <div class="tabContent" id="sistemas">
+                    <div class="skillTags">
+                        <span class="skillTag">Python (Intermediate / Data Analysis)</span>
+                        <span class="skillTag">Microsoft Excel (Intermediate)</span>
+                        <span class="skillTag">Power BI (Basic)</span>
+                        <span class="skillTag">TOTVS (Operational use)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="idiomas">
+            <h2 class="sectionTitle">Languages</h2>
+            <div class="langGrid">
+                <div class="langItem">
+                    <div class="langHeader">
+                        <strong>Portuguese</strong>
+                        <span style="color: var(--textMuted);">Native</span>
+                    </div>
+                    <div class="barBg">
+                        <div class="barFill fillNativo"></div>
+                    </div>
+                </div>
+                <div class="langItem">
+                    <div class="langHeader">
+                        <strong>English</strong>
+                        <span style="color: var(--textMuted);">Advanced</span>
+                    </div>
+                    <div class="barBg">
+                        <div class="barFill fillAdv"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        const tabBtns = document.querySelectorAll('.tabBtn');
+        const tabContents = document.querySelectorAll('.tabContent');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                ta
