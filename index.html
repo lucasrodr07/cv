@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucas Rodrigues | Engenharia e Processos</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
+        :root {
+            --bg-base: #161616;
+            --bg-box: #2A2A2A;
+            --bg-box-hover: #333333;
+            --accent-main: #C28462;
+            --accent-dark: #8C573C;
+            --accent-green: #587B6A;
+            --text-light: #F8FAFC;
+            --text-gray: #B0B0B0;
+            --border-line: rgba(255, 255, 255, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        [data-theme="light"] {
+            --bg-base: #F5F2EE;
+            --bg-box: #FFFFFF;
+            --bg-box-hover: #EFEBE5;
+            --text-light: #161616;
+            --text-gray: #4A4A4A;
+            --accent-main: #8C573C; 
+            --accent-dark: #C28462;
+            --accent-green: #426B52;
+            --border-line: #D9D0C1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-light);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .header-controls {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            padding-bottom: 1rem;
+        }
+
+        .btn-theme, .btn-lang {
+            background: var(--bg-box);
+            border: 1px solid var(--border-line);
+            color: var(--text-light);
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn-theme:hover, .btn-lang:hover {
+            border-color: var(--accent-main);
+            color: var(--accent-main);
+        }
+
+        .intro-header {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            padding: 3rem 0 4rem;
+            border-bottom: 1px solid var(--border-line);
+        }
+
+        @media (min-width: 768px) {
+            .intro-header {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        .intro-text {
+            flex: 1;
+        }
+
+        .name-title {
+            font-size: 3.2rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            background: linear-gradient(90deg, var(--text-light), var(--accent-main));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .job-title {
+            font-size: 1.3rem;
+            color: var(--accent-main);
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .short-bio {
+            color: var(--text-gray);
+            margin-bottom: 32px;
+            max-width: 600px;
+            font-size: 1.05rem;
+        }
+
+        .action-links {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .button {
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+
+        .btn-main {
+            background-color: var(--accent-main);
+            color: #161616;
+        }
+
+        .btn-main:hover {
+            background-color: transparent;
+            border-color: var(--accent-main);
+            color: var(--accent-main);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border-color: var(--text-gray);
+            color: var(--text-light);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--text-light);
+            background-color: var(--bg-box);
+        }
+
+        .location {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            margin-left: 8px;
+        }
+
+        .intro-visual {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            position: relative;
+        }
+
+        .photo-blob {
+            width: 300px;
+            height: 300px;
+            background-image: url('foto-lucas.jpg');
+            background-size: cover;
+            background-position: center;
+            border: 4px solid var(--accent-main);
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            animation: morph-photo 8s ease-in-out infinite;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            filter: grayscale(20%);
+            transition: filter 0.3s ease;
+        }
+
+        .photo-blob:hover {
+            filter: grayscale(0%);
+        }
+
+        @keyframes morph-photo {
+            0% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+            50% { border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%; }
+            100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+        }
+
+        .block-title {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            display: inline-block;
+            position: relative;
+            font-weight: 800;
+        }
+
+        .block-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 40%;
+            height: 4px;
+            background-color: var(--accent-main);
+            border-radius: 2px;
+        }
+
+        section {
+            padding: 70px 0;
+        }
+
+        .text-content {
+            color: var(--text-gray);
+            max-width: 850px;
+            font-size: 1.15rem;
+            line-height: 1.8;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+        }
+
+        .info-card {
+            background-color: var(--bg-box);
+            padding: 40px;
+            border-radius: 16px;
+            transition: var(--transition);
+            border-left: 4px solid transparent;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-line);
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            border-left-color: var(--accent-main);
+            background-color: var(--bg-box-hover);
+        }
+
+        .info-card h3 { 
+            margin-bottom: 8px; 
+            font-size: 1.25rem;
+        }
+        
+        .info-card .highlight { 
+            color: var(--accent-main); 
+            font-weight: 600; 
+            margin-bottom: 24px; 
+        }
+        
+        .info-card .sub-text { 
+            color: var(--text-gray); 
+            font-size: 0.95rem; 
+            margin-bottom: 4px;
+        }
+
+        .history-line {
+            position: relative;
+            padding-left: 40px;
+            border-left: 2px solid var(--border-line);
+        }
+
+        .history-item {
+            position: relative;
+            margin-bottom: 48px;
+        }
+
+        .history-item::before {
+            content: '';
+            position: absolute;
+            left: -47px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            background-color: var(--bg-base);
+            border: 3px solid var(--accent-main);
+            border-radius: 50%;
+        }
+
+        .history-role { 
+            font-size: 1.4rem; 
+            font-weight: 600; 
+            color: var(--text-light); 
+        }
+        
+        .history-company { 
+            color: var(--accent-main); 
+            font-weight: 600; 
+            margin: 8px 0 16px 0; 
+            font-size: 1.1rem;
+        }
+
+        .history-date {
+            color: var(--text-gray);
+            margin-bottom: 24px;
+            font-size: 0.95rem;
+        }
+        
+        .bullets {
+            list-style: none;
+            margin-top: 24px;
+        }
+        
+        .bullets li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 16px;
+            color: var(--text-gray);
+            font-size: 1.05rem;
+        }
+
+        .bullets li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent-main);
+            font-size: 1.2rem;
+            top: -2px;
+        }
+
+        .project-box {
+            background: linear-gradient(145deg, var(--bg-box), var(--bg-base));
+            padding: 50px;
+            border-radius: 20px;
+            border: 1px solid var(--border-line);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .proj-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-bottom: 32px;
+            border-bottom: 1px solid var(--border-line);
+            padding-bottom: 24px;
+        }
+
+        .proj-title {
+            font-size: 2rem;
+            margin-bottom: 8px;
+            color: var(--text-light);
+        }
+
+        .proj-sub {
+            color: var(--accent-main);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .badge {
+            background-color: rgba(88, 123, 106, 0.1);
+            color: var(--accent-green);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 1px solid rgba(88, 123, 106, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 24px;
+            margin: 32px 0;
+            padding: 24px;
+            background-color: rgba(0,0,0,0.1);
+            border-radius: 12px;
+            border: 1px solid var(--border-line);
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-num {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent-main);
+            line-height: 1.1;
+        }
+
+        .stat-desc {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        .skills-wrapper {
+            background-color: var(--bg-box);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-line);
+        }
+
+        .skills-nav {
+            display: flex;
+            border-bottom: 1px solid var(--border-line);
+            flex-wrap: wrap;
+            background-color: rgba(0,0,0,0.1);
+        }
+
+        .nav-btn {
+            flex: 1;
+            padding: 24px;
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            min-width: 220px;
+        }
+
+        .nav-btn:hover {
+            color: var(--text-light);
+        }
+
+        .nav-btn.active {
+            color: var(--accent-main);
+            border-bottom: 3px solid var(--accent-main);
+            background-color: rgba(194, 132, 98, 0.05);
+        }
+
+        .skills-panel {
+            display: none;
+            padding: 48px;
+            animation: showUp 0.3s ease-out;
+        }
+
+        .skills-panel.active {
+            display: block;
+        }
+
+        .tags-area {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .tag {
+            background-color: var(--bg-base);
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: 1px solid var(--border-line);
+            color: var(--text-light);
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .tag:hover {
+            border-color: var(--accent-main);
+            transform: translateY(-2px);
+        }
+
+        @keyframes showUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .lang-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .lang-card {
+            background-color: var(--bg-box);
+            padding: 32px;
+            border-radius: 16px;
+            border: 1px solid var(--border-line);
+        }
+
+        .lang-top {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .bar-empty {
+            width: 100%;
+            height: 10px;
+            background-color: var(--bg-base);
+            border-radius: 5px;
+            overflow: hidden;
+            border: 1px solid var(--border-line);
+        }
+
+        .bar-color {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-main), var(--accent-dark));
+            border-radius: 5px;
+        }
+
+        #btn-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--accent-main);
+            color: #161616;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            text-decoration: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 1000;
+        }
+
+        #btn-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @media (max-width: 768px) {
+            .wrapper { padding: 1rem; }
+            .header-controls { justify-content: center; margin-bottom: 1rem; }
+            .intro-header { text-align: center; padding: 2rem 0; }
+            .intro-visual { justify-content: center; order: -1; }
+            .photo-blob { width: 220px; height: 220px; }
+            .name-title { font-size: 2.2rem; }
+            .job-title { font-size: 1.1rem; }
+            .short-bio { font-size: 1rem; margin: 0 auto 2rem; }
+            .action-links { justify-content: center; }
+            .block-title { font-size: 1.6rem; text-align: center; display: block; }
+            .block-title::after { left: 50%; transform: translateX(-50%); width: 60px; }
+            .text-content { font-size: 1rem; text-align: justify; }
+            .grid-layout { grid-template-columns: 1fr; gap: 16px; }
+            .info-card { padding: 24px; }
+            .skills-nav { flex-direction: column; }
+            .nav-btn { padding: 16px; min-width: unset; border-bottom: 1px solid var(--border-line); }
+            .nav-btn.active { border-bottom: 1px solid var(--accent-main); border-left: 3px solid var(--accent-main); }
+            .skills-panel { padding: 24px; }
+            .lang-container { grid-template-columns: 1fr; gap: 20px; }
+        }
+
+    </style>
+</head>
+<body id="top">
+
+    <div class="wrapper">
+        
+        <div class="header-controls">
+            <button id="toggle-lang" class="btn-lang">PT</button>
+            <button id="toggle-mode" class="btn-theme" data-en="Light Mode" data-pt="Modo Claro">Modo Claro</button>
+        </div>
+
+        <div class="intro-header">
+            <div class="intro-text">
+                <h1 class="name-title">Lucas de Souza Rodrigues</h1>
+                <h2 class="job-title" data-en="Electrical Engineering & Industrial Production Management Student" data-pt="Estudante de Engenharia Elétrica & Gestão de Produção Industrial">Electrical Engineering & Industrial Production Management Student</h2>
+                <p class="short-bio" data-en="Practical experience in an industrial environment with a strong focus on data analysis, key performance indicators (KPIs), and continuous process improvement." data-pt="Experiência prática em ambiente industrial com forte foco em análise de dados, indicadores de desempenho (KPIs) e melhoria contínua de processos.">
+                    Practical experience in an industrial environment with a strong focus on data analysis, key performance indicators (KPIs), and continuous process improvement.
+                </p>
+                <div class="action-links">
+                    <a href="CV-Lucas-Rodrigues.pdf" download class="button btn-main" data-en="Download CV" data-pt="Baixar Currículo">Download CV</a>
+                    <a href="mailto:lucasrodrigues07.contato@gmail.com" class="button btn-outline" data-en="Send Email" data-pt="Enviar E-mail">Send Email</a>
+                    <a href="https://www.linkedin.com/in/lucas-rodrigues-077b121b7" target="_blank" class="button btn-outline">LinkedIn</a>
+                    <span class="location" data-en="Curitiba, Paraná, Brazil" data-pt="Curitiba, Paraná, Brasil">Curitiba, Paraná, Brazil</span>
+                </div>
+            </div>
+            <div class="intro-visual">
+                <div class="photo-blob" title="Lucas Rodrigues"></div>
+            </div>
+        </div>
+
+        <section>
+            <h2 class="block-title" data-en="About Me" data-pt="Sobre Mim">About Me</h2>
+            <p class="text-content" data-en="I am an Electrical Engineering student with complementary studies in Industrial Production Management. I have practical experience in the industrial sector, focusing on operational data analysis, monitoring key performance indicators (KPIs), and implementing continuous improvement. I am looking for professional opportunities in data-driven environments, applying analytical skills to complex problem-solving and strategic optimization." data-pt="Sou estudante de Engenharia Elétrica com formação complementar em Gestão da Produção Industrial. Tenho experiência prática no setor industrial, com foco na análise de dados operacionais, monitoramento de indicadores (KPIs) e implementação de melhorias contínuas. Busco oportunidades em ambientes orientados a dados, aplicando minhas habilidades analíticas para a resolução de problemas complexos e otimização estratégica.">
+                I am an Electrical Engineering student with complementary studies in Industrial Production Management. I have practical experience in the industrial sector, focusing on operational data analysis, monitoring key performance indicators (KPIs), and implementing continuous improvement. I am looking for professional opportunities in data-driven environments, applying analytical skills to complex problem-solving and strategic optimization.
+            </p>
+        </section>
+
+        <section>
+            <h2 class="block-title" data-en="Academic Background" data-pt="Formação Acadêmica">Academic Background</h2>
+            <div class="grid-layout">
+                <div class="info-card">
+                    <h3 data-en="Bachelor's Degree in Electrical Engineering" data-pt="Bacharelado em Engenharia Elétrica">Bachelor's Degree in Electrical Engineering</h3>
+                    <div class="highlight" data-en="Federal University of Paraná (UFPR)" data-pt="Universidade Federal do Paraná (UFPR)">Federal University of Paraná (UFPR)</div>
+                    <p class="sub-text" data-en="Emphasis: Embedded Electronic Systems" data-pt="Ênfase: Sistemas Eletrônicos Embarcados">Emphasis: Embedded Electronic Systems</p>
+                    <p class="sub-text" data-en="Start: 2025 | Expected Graduation: 2030" data-pt="Início: 2025 | Previsão de Formatura: 2030">Start: 2025 | Expected Graduation: 2030</p>
+                </div>
+                <div class="info-card">
+                    <h3 data-en="Technologist Degree in Industrial Production" data-pt="Tecnólogo em Gestão da Produção Industrial">Technologist Degree in Industrial Production</h3>
+                    <div class="highlight">Uniasselvi (Distance Learning)</div>
+                    <p class="sub-text" data-en="Start: 2026 | Expected Graduation: 2028" data-pt="Início: 2026 | Previsão de Formatura: 2028">Start: 2026 | Expected Graduation: 2028</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="block-title" data-en="Professional Experience" data-pt="Experiência Profissional">Professional Experience</h2>
+            <div class="history-line">
+                <div class="history-item">
+                    <h3 class="history-role" data-en="Industrial Engineering Apprentice" data-pt="Jovem Aprendiz de Engenharia Industrial">Industrial Engineering Apprentice</h3>
+                    <div class="history-company">Motherson Group | Curitiba, Brazil</div>
+                    <p class="history-date" data-en="2025 to Present" data-pt="2025 até o Momento">2025 to Present</p>
+                    <ul class="bullets">
+                        <li data-en="Multidisciplinary support in launching new projects for global automakers, assisting the industrial engineering team in interfacing with cross functional departments." data-pt="Suporte multidisciplinar no lançamento de novos projetos para montadoras globais, auxiliando a equipe de engenharia industrial na interface com departamentos multifuncionais.">Multidisciplinary support in launching new projects for global automakers, assisting the industrial engineering team in interfacing with cross functional departments.</li>
+                        <li data-en="Participation in alignment meetings with international teams, facilitating information flow and tracking project schedules." data-pt="Participação em reuniões de alinhamento com equipes internacionais, facilitando o fluxo de informações e o acompanhamento do cronograma dos projetos.">Participation in alignment meetings with international teams, facilitating information flow and tracking project schedules.</li>
+                        <li data-en="Development of Standard Operating Procedures (SOPs) and technical documentation to guide operations and support the standardization of production processes." data-pt="Desenvolvimento de Procedimentos Operacionais Padrão (SOPs) e documentação técnica para orientar as operações e apoiar a padronização dos processos de produção.">Development of Standard Operating Procedures (SOPs) and documentação técnica para orientar as operações e apoiar a padronização dos processos de produção.</li>
+                        <li data-en="Requirements tracking and organization of operational data to support decision making across different areas." data-pt="Acompanhamento de requisitos e organização de dados operacionais para apoiar a tomada de decisões em diferentes áreas.">Requirements tracking and organization of operational data to support decision making across different areas.</li>
+                        <li data-en="Analysis of performance indicators (KPIs) to monitor production processes and identify deviations." data-pt="Análise de indicadores de desempenho (KPIs) para monitorar processos produtivos e identificar desvios.">Analysis of performance indicators (KPIs) to monitor production processes and identify deviations.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="projeto-pa">
+            <h2 class="block-title" data-en="Featured Project" data-pt="Projeto em Destaque">Featured Project</h2>
+            <div class="project-box">
+                <div class="proj-header">
+                    <div>
+                        <h3 class="proj-title">P&A | Progress and Advancement</h3>
+                        <p class="proj-sub" data-en="Logistics Process Improvement at Motherson Group" data-pt="Melhoria de Processos Logísticos no Grupo Motherson">Logistics Process Improvement at Motherson Group</p>
+                    </div>
+                    <div class="badge" data-en="🏆 1st Place, Journey Program" data-pt="🏆 1º Lugar, Programa Journey">
+                        🏆 1st Place, Journey Program
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-num">94.4%</span>
+                        <span class="stat-desc" data-en="Incident Time Reduction" data-pt="Redução no Tempo de Incidentes">Incident Time Reduction</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-num">46%</span>
+                        <span class="stat-desc" data-en="Checklist Time Reduction" data-pt="Redução no Tempo do Checklist">Checklist Time Reduction</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-num">100%</span>
+                        <span class="stat-desc" data-en="Centralized Data" data-pt="Dados Centralizados">Centralized Data</span>
+                    </div>
+                </div>
+
+                <ul class="bullets">
+                    <li data-en="Improvement project in the logistics shipping area targeting operational bottlenecks." data-pt="Projeto de melhoria na área de expedição logística com foco em gargalos operacionais.">Improvement project in the logistics shipping area targeting operational bottlenecks.</li>
+                    <li data-en="Digitalization of the dispatch checklist and standardization of the verification flow." data-pt="Digitalização do checklist de expedição e padronização do fluxo de verificação.">Digitalization of the dispatch checklist and standardization of the verification flow.</li>
+                    <li data-en="Reduced incident handling time from 90 to 5 minutes, making the process 18x faster." data-pt="Redução do tempo de tratamento de incidentes de 90 para 5 minutos, tornando o processo 18x mais rápido.">Reduced incident handling time from 90 to 5 minutes, making the process 18x faster.</li>
+                    <li data-en="Centralized all operational information for real time tracking and better decision making." data-pt="Centralização de todas as informações operacionais para acompanhamento em tempo real e melhor tomada de decisão.">Centralized all operational information for real time tracking and better decision making.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="block-title" data-en="Technical Skills" data-pt="Habilidades Técnicas">Technical Skills</h2>
+            <div class="skills-wrapper">
+                <div class="skills-nav">
+                    <button class="nav-btn active" data-target="data-tab" data-en="Data Analysis" data-pt="Análise de Dados">Data Analysis</button>
+                    <button class="nav-btn" data-target="process-tab" data-en="Processes & Improvement" data-pt="Processos e Melhoria">Processes & Improvement</button>
+                    <button class="nav-btn" data-target="sys-tab" data-en="Systems & Tools" data-pt="Sistemas e Ferramentas">Systems & Tools</button>
+                </div>
+                
+                <div class="skills-panel active" id="data-tab">
+                    <div class="tags-area">
+                        <span class="tag" data-en="Performance monitoring" data-pt="Monitoramento de performance">Performance monitoring</span>
+                        <span class="tag" data-en="Key Performance Indicators (KPIs)" data-pt="Indicadores de Desempenho (KPIs)">Key Performance Indicators (KPIs)</span>
+                        <span class="tag" data-en="Data and results presentation" data-pt="Apresentação de dados e resultados">Data and results presentation</span>
+                    </div>
+                </div>
+
+                <div class="skills-panel" id="process-tab">
+                    <div class="tags-area">
+                        <span class="tag">Lean Six Sigma Yellow Belt</span>
+                        <span class="tag" data-en="Continuous process improvement" data-pt="Melhoria contínua de processos">Continuous process improvement</span>
+                        <span class="tag" data-en="Standardization and process control" data-pt="Padronização e controle de processos">Standardization and process control</span>
+                        <span class="tag">5S Methodology</span>
+                        <span class="tag" data-en="Quality tools (practical use)" data-pt="Ferramentas de Qualidade (uso prático)">Quality tools (practical use)</span>
+                    </div>
+                </div>
+
+                <div class="skills-panel" id="sys-tab">
+                    <div class="tags-area">
+                        <span class="tag" data-en="Python (Intermediate)" data-pt="Python (Intermediário)">Python (Intermediate)</span>
+                        <span class="tag" data-en="Microsoft Excel (Intermediate)" data-pt="Microsoft Excel (Intermediário)">Microsoft Excel (Intermediate)</span>
+                        <span class="tag" data-en="Power BI (Basic)" data-pt="Power BI (Básico)">Power BI (Basic)</span>
+                        <span class="tag" data-en="TOTVS (Operational use)" data-pt="TOTVS (Uso operacional)">TOTVS (Operational use)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="block-title" data-en="Languages" data-pt="Idiomas">Languages</h2>
+            <div class="lang-container">
+                <div class="lang-card">
+                    <div class="lang-top">
+                        <strong data-en="Portuguese" data-pt="Português">Portuguese</strong>
+                        <span style="color: var(--text-gray)" data-en="Native" data-pt="Nativo">Native</span>
+                    </div>
+                    <div class="bar-empty">
+                        <div class="bar-color" style="width: 100%;"></div>
+                    </div>
+                </div>
+                <div class="lang-card">
+                    <div class="lang-top">
+                        <strong data-en="English" data-pt="Inglês">English</strong>
+                        <span style="color: var(--text-gray)" data-en="Advanced" data-pt="Avançado">Advanced</span>
+                    </div>
+                    <div class="bar-empty">
+                        <div class="bar-color" style="width: 80%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <a href="#top" id="btn-top">↑</a>
+
+    <script>
+        const tabs = document.querySelectorAll('.nav-btn');
+        const panels = document.querySelectorAll('.skills-panel');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                tabs.forEach(t => t.classList.remove('active'));
+                panels.forEach(p => p.classList.remove('active'));
+                this.classList.add('active');
+                let targetId = this.getAttribute('data-target');
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+
+        const toggleBtn = document.getElementById('toggle-mode');
+        const htmlDoc = document.documentElement;
+
+        toggleBtn.onclick = function() {
+            let isDark = htmlDoc.getAttribute('data-theme') === 'dark';
+            htmlDoc.setAttribute('data-theme', isDark ? 'light' : 'dark');
+            let currentLangIsEn = document.getElementById('toggle-lang').innerText === 'PT';
+            if (isDark) {
+                this.innerText = currentLangIsEn ? 'Dark Mode' : 'Modo Escuro';
+            } else {
+                this.innerText = currentLangIsEn ? 'Light Mode' : 'Modo Claro';
+            }
+        };
+
+        const langBtn = document.getElementById('toggle-lang');
+        const translatables = document.querySelectorAll('[data-en]');
+        let isEnglish = true;
+
+        langBtn.onclick = function() {
+            isEnglish = !isEnglish;
+            this.innerText = isEnglish ? 'PT' : 'EN';
+            translatables.forEach(el => {
+                let text = isEnglish ? el.getAttribute('data-en') : el.getAttribute('data-pt');
+                if(text) el.innerText = text;
+            });
+            let isDarkNow = htmlDoc.getAttribute('data-theme') === 'dark';
+            if(isEnglish) {
+                toggleBtn.innerText = isDarkNow ? 'Light Mode' : 'Dark Mode';
+            } else {
+                toggleBtn.innerText = isDarkNow ? 'Modo Claro' : 'Modo Escuro';
+            }
+        };
+
+        const goTopBtn = document.getElementById('btn-top');
+        window.onscroll = function() {
+            if (window.scrollY > 300) {
+                goTopBtn.classList.add('show');
+            } else {
+                goTopBtn.classList.remove('show');
+            }
+        };
+    </script>
+</body>
+</html>
